@@ -4,9 +4,9 @@
 
 ImmunoClassifier benchmarks multiple machine learning approaches for fine-grained immune cell subtype identification, from classical ML baselines to deep learning and graph neural networks.
 
-## Try It Now
+## End-to-End Demonstration with Figures
 
-> **[PBMC Classification Benchmark Notebook](examples/pbmc_classification_benchmark.ipynb)** — fully self-contained end-to-end demo.  
+> **[PBMC Classification Benchmark Notebook](examples/pbmc_classification_benchmark.ipynb)**  
 > Synthetic PBMC data → preprocessing → Logistic & XGBoost training → evaluation → visualizations.  
 > No data downloads, no GPU — runs in ~30 seconds.
 
@@ -31,17 +31,15 @@ Accurate immune cell type annotation is critical for interpreting scRNA-seq expe
 | Dendritic cells | cDC1, cDC2, pDC |
 | Other | Macrophages, Platelets, HSPCs |
 
-## Methods Benchmarked
+## Implemented Models
 
-| Method | Category | Description |
+| Method | Category | Status |
 |---|---|---|
-| Logistic Regression | Baseline | L2-regularized on HVGs |
-| XGBoost | Classical ML | Gradient-boosted trees on marker gene expression |
-| scVI + MLP | Deep Learning | Neural classifier on scVI latent space |
-| Cell Graph GNN | Graph Neural Network | GATv2Conv on cell-cell KNN similarity graph |
-| scGPT Embeddings | Foundation Model | Fine-tuned scGPT embeddings + classifier |
-| CellTypist | Reference | Pre-trained logistic regression (Dominguez Conde et al.) |
-| Azimuth | Reference | Reference-based mapping (Hao et al.) |
+| Logistic Regression | Baseline | Implemented — L2-regularized on HVGs |
+| XGBoost | Classical ML | Implemented — gradient-boosted trees with class weighting |
+| scVI + MLP | Deep Learning | Implemented — neural classifier on scVI latent space (requires `scvi-tools`) |
+| Cell Graph GNN | Graph Neural Network | Implemented — GATv2Conv on cell-cell KNN graph (requires `torch-geometric`) |
+| Foundation Models | Foundation Model | Planned — scGPT / Geneformer embedding interface scaffolded |
 
 ## Installation
 
@@ -141,7 +139,7 @@ immunoclassifier/
 
 ## Training Data
 
-We train on publicly available annotated immune cell datasets:
+This package is designed to train on publicly available data sets:
 
 - **Tabula Sapiens** (immune compartment) — ~100k cells, 40+ cell types
 - **Hao et al. 2021 CITE-seq PBMC** — 161k PBMCs with protein-validated annotations
