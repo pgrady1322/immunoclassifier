@@ -4,6 +4,12 @@
 
 ImmunoClassifier benchmarks multiple machine learning approaches for fine-grained immune cell subtype identification, from classical ML baselines to deep learning and graph neural networks.
 
+## Try It Now
+
+> **[PBMC Classification Benchmark Notebook](examples/pbmc_classification_benchmark.ipynb)** — fully self-contained end-to-end demo.  
+> Synthetic PBMC data → preprocessing → Logistic & XGBoost training → evaluation → visualizations.  
+> No data downloads, no GPU — runs in ~30 seconds.
+
 ## Overview
 
 Accurate immune cell type annotation is critical for interpreting scRNA-seq experiments in immunology, immuno-oncology, and infectious disease research. ImmunoClassifier provides:
@@ -125,7 +131,8 @@ immunoclassifier/
 ├── notebooks/                 # Analysis notebooks
 │   └── 01_benchmark_analysis.ipynb
 ├── tests/                     # Unit tests
-├── examples/                  # Example scripts
+├── examples/                  # Example notebooks & scripts
+│   └── pbmc_classification_benchmark.ipynb
 ├── env.yml                    # Conda environment
 ├── setup.py                   # Package installation
 ├── pyproject.toml             # Tool configuration

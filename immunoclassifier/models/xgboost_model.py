@@ -229,7 +229,7 @@ class XGBoostClassifier(BaseClassifier):
         path.parent.mkdir(parents=True, exist_ok=True)
 
         # Save XGBoost model
-        self.model.save_model(str(path.with_suffix(".xgb")))
+        self.model.save_model(str(path.with_suffix(".ubj")))
 
         # Save metadata
         with open(path.with_suffix(".meta"), "wb") as f:
@@ -251,7 +251,7 @@ class XGBoostClassifier(BaseClassifier):
         path = Path(path)
 
         self.model = xgb.Booster()
-        self.model.load_model(str(path.with_suffix(".xgb")))
+        self.model.load_model(str(path.with_suffix(".ubj")))
 
         with open(path.with_suffix(".meta"), "rb") as f:
             meta = pickle.load(f)
