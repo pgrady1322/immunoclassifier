@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 ImmunoClassifier v0.1.0
 
@@ -18,11 +17,10 @@ License: MIT License - See LICENSE
 """
 
 import logging
-from pathlib import Path
-from typing import Dict, Any, Optional
+from typing import Any
 
-import numpy as np
 import anndata as ad
+import numpy as np
 
 from immunoclassifier.models.base import BaseClassifier
 
@@ -90,7 +88,7 @@ class FoundationModelClassifier(BaseClassifier):
     def __init__(
         self,
         backend: str = "scgpt",
-        model_path: Optional[str] = None,
+        model_path: str | None = None,
         classifier_hidden: tuple = (256, 128),
         classifier_dropout: float = 0.2,
         epochs: int = 50,
@@ -135,7 +133,7 @@ class FoundationModelClassifier(BaseClassifier):
                 f"Foundation model backend '{self.backend}' requires the '{pkg}' package. "
                 f"Install it following the instructions at the package repository. "
                 f"Reference: {ref}"
-            )
+            ) from None
 
     def extract_embeddings(self, adata: ad.AnnData) -> np.ndarray:
         """
@@ -172,7 +170,7 @@ class FoundationModelClassifier(BaseClassifier):
         label_key: str = "cell_type",
         val_fraction: float = 0.1,
         **kwargs,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Train the MLP classifier head on foundation model embeddings.
 
@@ -226,7 +224,7 @@ class FoundationModelClassifier(BaseClassifier):
         )
 
     @staticmethod
-    def list_backends() -> Dict[str, Dict[str, str]]:
+    def list_backends() -> dict[str, dict[str, str]]:
         """List all supported foundation model backends with metadata."""
         return {
             name: {

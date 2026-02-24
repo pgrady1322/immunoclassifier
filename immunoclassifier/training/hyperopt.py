@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 ImmunoClassifier v0.1.0
 
@@ -11,10 +10,10 @@ License: MIT License - See LICENSE
 """
 
 import logging
-from typing import Any, Dict, List, Optional
+from typing import Any
 
-import numpy as np
 import anndata as ad
+import numpy as np
 
 logger = logging.getLogger(__name__)
 
@@ -50,7 +49,7 @@ DEFAULT_SEARCH_SPACES = {
 }
 
 
-def _sample_param(trial, name: str, spec: Dict[str, Any]) -> Any:
+def _sample_param(trial, name: str, spec: dict[str, Any]) -> Any:
     """Sample a single hyperparameter from an Optuna trial."""
     ptype = spec["type"]
     if ptype == "float":
@@ -73,10 +72,10 @@ def run_hyperopt(
     metric: str = "balanced_accuracy",
     n_trials: int = 30,
     n_folds: int = 3,
-    search_space: Optional[Dict[str, Dict]] = None,
-    timeout: Optional[int] = None,
+    search_space: dict[str, dict] | None = None,
+    timeout: int | None = None,
     random_state: int = 42,
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """
     Run Optuna hyperparameter optimization for a given model.
 
@@ -114,11 +113,12 @@ def run_hyperopt(
         raise ImportError(
             "Optuna is required for hyperparameter optimization. "
             "Install it with: pip install optuna"
-        )
+        ) from None
 
     from sklearn.model_selection import StratifiedKFold
-    from immunoclassifier.training.trainer import MODEL_REGISTRY
+
     from immunoclassifier.evaluation.metrics import evaluate_predictions
+    from immunoclassifier.training.trainer import MODEL_REGISTRY
 
     if model_name not in MODEL_REGISTRY:
         raise ValueError(
@@ -196,7 +196,7 @@ def run_hyperopt(
 def train_with_best_params(
     model_name: str,
     adata: ad.AnnData,
-    best_params: Dict[str, Any],
+    best_params: dict[str, Any],
     label_key: str = "cell_type",
 ) -> tuple:
     """

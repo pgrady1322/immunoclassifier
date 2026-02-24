@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 ImmunoClassifier v0.1.0
 
@@ -13,12 +12,12 @@ License: MIT License - See LICENSE
 import logging
 import pickle
 from pathlib import Path
-from typing import Dict, Any, Optional
+from typing import Any
 
-import numpy as np
 import anndata as ad
-from sklearn.preprocessing import LabelEncoder
+import numpy as np
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
 
 from immunoclassifier.models.base import BaseClassifier
 
@@ -83,7 +82,7 @@ class XGBoostClassifier(BaseClassifier):
         val_fraction: float = 0.1,
         early_stopping_rounds: int = 20,
         **kwargs,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Train XGBoost classifier."""
         import xgboost as xgb
 
@@ -179,7 +178,7 @@ class XGBoostClassifier(BaseClassifier):
             y_pred = np.argmax(probabilities, axis=1)
             return self.label_encoder.inverse_transform(y_pred)
 
-    def get_feature_importance(self, importance_type: str = "gain", top_n: int = 30) -> Dict[str, float]:
+    def get_feature_importance(self, importance_type: str = "gain", top_n: int = 30) -> dict[str, float]:
         """
         Get top feature importances (gene importances).
 

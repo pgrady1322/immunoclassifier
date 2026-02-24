@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 ImmunoClassifier v0.1.0
 
@@ -16,9 +15,9 @@ from immunoclassifier.evaluation.metrics import (
     rare_cell_analysis,
 )
 from immunoclassifier.evaluation.plots import (
+    plot_benchmark_comparison,
     plot_confusion_matrix,
     plot_umap_predictions,
-    plot_benchmark_comparison,
 )
 
 __all__ = [

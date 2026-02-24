@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 ImmunoClassifier v0.1.0
 
@@ -11,18 +10,18 @@ License: MIT License - See LICENSE
 """
 
 import logging
-from typing import Dict, Any, Optional, List
+from typing import Any
 
 import numpy as np
 import pandas as pd
 from sklearn.metrics import (
     accuracy_score,
     balanced_accuracy_score,
+    classification_report,
+    cohen_kappa_score,
     f1_score,
     precision_score,
     recall_score,
-    classification_report,
-    cohen_kappa_score,
 )
 
 logger = logging.getLogger(__name__)
@@ -31,8 +30,8 @@ logger = logging.getLogger(__name__)
 def evaluate_predictions(
     y_true: np.ndarray,
     y_pred: np.ndarray,
-    labels: Optional[List[str]] = None,
-) -> Dict[str, Any]:
+    labels: list[str] | None = None,
+) -> dict[str, Any]:
     """
     Compute comprehensive evaluation metrics.
 
@@ -80,7 +79,7 @@ def evaluate_predictions(
 def per_class_metrics(
     y_true: np.ndarray,
     y_pred: np.ndarray,
-    labels: Optional[List[str]] = None,
+    labels: list[str] | None = None,
 ) -> pd.DataFrame:
     """
     Compute per-class precision, recall, F1, and support.
@@ -122,7 +121,7 @@ def rare_cell_analysis(
     y_true: np.ndarray,
     y_pred: np.ndarray,
     threshold: int = 100,
-) -> Dict[str, Any]:
+) -> dict[str, Any]:
     """
     Analyze classification performance on rare cell types.
 
@@ -143,7 +142,7 @@ def rare_cell_analysis(
     Dictionary with rare vs abundant cell type metrics
     """
     unique, counts = np.unique(y_true, return_counts=True)
-    count_map = dict(zip(unique, counts))
+    count_map = dict(zip(unique, counts, strict=False))
 
     rare_types = [ct for ct, n in count_map.items() if n < threshold]
     abundant_types = [ct for ct, n in count_map.items() if n >= threshold]

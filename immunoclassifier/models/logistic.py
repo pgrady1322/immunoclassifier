@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 ImmunoClassifier v0.1.0
 
@@ -13,13 +12,13 @@ License: MIT License - See LICENSE
 import logging
 import pickle
 from pathlib import Path
-from typing import Dict, Any, Optional
+from typing import Any
 
-import numpy as np
 import anndata as ad
+import numpy as np
 from sklearn.linear_model import LogisticRegression
-from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
 
 from immunoclassifier.models.base import BaseClassifier
 
@@ -56,7 +55,7 @@ class LogisticClassifier(BaseClassifier):
         label_key: str = "cell_type",
         val_fraction: float = 0.1,
         **kwargs,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Train logistic regression on expression matrix."""
         logger.info(f"Training logistic regression (C={self.C})")
 

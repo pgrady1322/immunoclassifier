@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 ImmunoClassifier v0.1.0
 
@@ -10,13 +9,11 @@ Anthropic Claude Opus 4.6 used for code formatting and cleanup assistance.
 License: MIT License - See LICENSE
 """
 
-import os
 import logging
 from pathlib import Path
-from typing import Optional
 
-import scanpy as sc
 import anndata as ad
+import scanpy as sc
 
 logger = logging.getLogger(__name__)
 
@@ -122,7 +119,7 @@ def _ensure_cache_dir() -> Path:
     return CACHE_DIR
 
 
-def load_pbmc_10k(cache_dir: Optional[str] = None, force_download: bool = False) -> ad.AnnData:
+def load_pbmc_10k(cache_dir: str | None = None, force_download: bool = False) -> ad.AnnData:
     """
     Load the 10x Genomics PBMC 10k dataset.
 
@@ -170,7 +167,7 @@ def load_pbmc_10k(cache_dir: Optional[str] = None, force_download: bool = False)
 
 
 def load_tabula_sapiens_immune(
-    cache_dir: Optional[str] = None, force_download: bool = False
+    cache_dir: str | None = None, force_download: bool = False
 ) -> ad.AnnData:
     """
     Load the Tabula Sapiens immune compartment.
@@ -237,7 +234,7 @@ def load_tabula_sapiens_immune(
 
 
 def load_hao_cite_seq(
-    cache_dir: Optional[str] = None, force_download: bool = False
+    cache_dir: str | None = None, force_download: bool = False
 ) -> ad.AnnData:
     """
     Load Hao et al. 2021 CITE-seq PBMC dataset (GSE164378).

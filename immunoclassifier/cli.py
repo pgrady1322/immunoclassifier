@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 ImmunoClassifier v0.1.0
 
@@ -11,6 +10,7 @@ License: MIT License - See LICENSE
 """
 
 import logging
+
 import click
 
 from immunoclassifier import __version__
@@ -37,9 +37,9 @@ def main(verbose):
 def download(dataset, output):
     """Download and prepare a training dataset."""
     from immunoclassifier.data.datasets import (
+        load_hao_cite_seq,
         load_pbmc_10k,
         load_tabula_sapiens_immune,
-        load_hao_cite_seq,
     )
 
     loaders = {
@@ -62,11 +62,11 @@ def download(dataset, output):
 @click.option("--output", "-o", default="results", help="Output directory")
 def train(config, output):
     """Train one or more classifiers."""
-    from immunoclassifier.utils.config import load_config
     from immunoclassifier.training.trainer import Trainer
+    from immunoclassifier.utils.config import load_config
 
     cfg = load_config(config)
-    trainer = Trainer(output_dir=output, label_key=cfg.get("label_key", "cell_type"))
+    Trainer(output_dir=output, label_key=cfg.get("label_key", "cell_type"))
 
     click.echo("Training configurations loaded. Starting benchmark...")
     # Implementation delegated to config-driven training
@@ -79,8 +79,8 @@ def train(config, output):
 @click.option("--output", "-o", default=None, help="Output h5ad file with predictions")
 def predict(input_path, model, output):
     """Predict cell types for new data."""
+
     import scanpy as sc
-    from pathlib import Path
 
     click.echo(f"Loading data from {input_path}...")
     adata = sc.read_h5ad(input_path)

@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 ImmunoClassifier v0.1.0
 
@@ -11,11 +10,9 @@ License: MIT License - See LICENSE
 """
 
 import logging
-from typing import Optional
 
-import numpy as np
-import scanpy as sc
 import anndata as ad
+import scanpy as sc
 
 logger = logging.getLogger(__name__)
 
@@ -29,7 +26,7 @@ def preprocess(
     target_sum: float = 1e4,
     n_pcs: int = 50,
     n_neighbors: int = 15,
-    batch_key: Optional[str] = None,
+    batch_key: str | None = None,
     copy: bool = True,
 ) -> ad.AnnData:
     """
@@ -160,7 +157,7 @@ def normalize(
 def select_hvgs(
     adata: ad.AnnData,
     n_top_genes: int = 3000,
-    batch_key: Optional[str] = None,
+    batch_key: str | None = None,
     copy: bool = False,
 ) -> ad.AnnData:
     """

@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 ImmunoClassifier v0.1.0
 
@@ -12,11 +11,10 @@ License: MIT License - See LICENSE
 
 import logging
 from abc import ABC, abstractmethod
-from pathlib import Path
-from typing import Optional, Dict, Any
+from typing import Any
 
-import numpy as np
 import anndata as ad
+import numpy as np
 
 logger = logging.getLogger(__name__)
 
@@ -43,7 +41,7 @@ class BaseClassifier(ABC):
         label_key: str = "cell_type",
         val_fraction: float = 0.1,
         **kwargs,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
         Train the classifier on labeled data.
 

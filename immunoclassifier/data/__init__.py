@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 ImmunoClassifier v0.1.0
 
@@ -11,12 +10,12 @@ License: MIT License - See LICENSE
 """
 
 from immunoclassifier.data.datasets import (
+    list_available_datasets,
+    load_hao_cite_seq,
     load_pbmc_10k,
     load_tabula_sapiens_immune,
-    load_hao_cite_seq,
-    list_available_datasets,
 )
-from immunoclassifier.data.preprocessing import preprocess, select_hvgs, normalize
+from immunoclassifier.data.preprocessing import normalize, preprocess, select_hvgs
 
 __all__ = [
     "load_pbmc_10k",

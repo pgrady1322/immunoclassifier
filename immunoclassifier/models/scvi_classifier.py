@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 ImmunoClassifier v0.1.0
 
@@ -11,16 +10,15 @@ License: MIT License - See LICENSE
 """
 
 import logging
-import pickle
 from pathlib import Path
-from typing import Dict, Any, Optional
+from typing import Any
 
-import numpy as np
 import anndata as ad
+import numpy as np
 import torch
 import torch.nn as nn
-from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
 
 from immunoclassifier.models.base import BaseClassifier
 
@@ -70,7 +68,7 @@ class ScVIClassifier(BaseClassifier):
         classifier_epochs: int = 50,
         batch_size: int = 256,
         learning_rate: float = 1e-3,
-        batch_key: Optional[str] = None,
+        batch_key: str | None = None,
         **kwargs,
     ):
         """
@@ -113,7 +111,7 @@ class ScVIClassifier(BaseClassifier):
         label_key: str = "cell_type",
         val_fraction: float = 0.1,
         **kwargs,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Train scVI + MLP classifier."""
         import scvi
 
@@ -291,12 +289,11 @@ class ScVIClassifier(BaseClassifier):
 
     def load(self, path: str) -> None:
         """Load scVI model + classifier."""
-        import scvi
 
         path = Path(path)
 
         # Load scVI
-        scvi_dir = path.parent / f"{path.stem}_scvi"
+        path.parent / f"{path.stem}_scvi"
         # Note: loading scVI requires the original adata setup
         logger.warning("scVI model loading requires adata with same setup. Use scvi.model.SCVI.load()")
 

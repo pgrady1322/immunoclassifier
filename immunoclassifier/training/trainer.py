@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 ImmunoClassifier v0.1.0
 
@@ -13,20 +12,19 @@ License: MIT License - See LICENSE
 import logging
 import time
 from pathlib import Path
-from typing import Dict, Any, Optional, List
+from typing import Any
 
-import numpy as np
 import anndata as ad
+import numpy as np
 from sklearn.model_selection import StratifiedKFold
 
-from immunoclassifier.models.base import BaseClassifier
-from immunoclassifier.models import (
-    LogisticClassifier,
-    XGBoostClassifier,
-    ScVIClassifier,
-    GNNClassifier,
-)
 from immunoclassifier.evaluation.metrics import evaluate_predictions, rare_cell_analysis
+from immunoclassifier.models import (
+    GNNClassifier,
+    LogisticClassifier,
+    ScVIClassifier,
+    XGBoostClassifier,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -66,8 +64,8 @@ class Trainer:
         self,
         model_name: str,
         adata: ad.AnnData,
-        model_kwargs: Optional[Dict] = None,
-        train_kwargs: Optional[Dict] = None,
+        model_kwargs: dict | None = None,
+        train_kwargs: dict | None = None,
     ) -> tuple:
         """
         Train a single model and return it with metrics.
@@ -108,10 +106,10 @@ class Trainer:
     def benchmark(
         self,
         adata_train: ad.AnnData,
-        adata_test: Optional[ad.AnnData] = None,
-        models: Optional[List[str]] = None,
-        model_configs: Optional[Dict[str, Dict]] = None,
-    ) -> Dict[str, Dict[str, Any]]:
+        adata_test: ad.AnnData | None = None,
+        models: list[str] | None = None,
+        model_configs: dict[str, dict] | None = None,
+    ) -> dict[str, dict[str, Any]]:
         """
         Benchmark multiple models on the same data.
 
@@ -174,8 +172,8 @@ class Trainer:
         model_name: str,
         adata: ad.AnnData,
         n_folds: int = 5,
-        model_kwargs: Optional[Dict] = None,
-    ) -> Dict[str, Any]:
+        model_kwargs: dict | None = None,
+    ) -> dict[str, Any]:
         """
         Stratified k-fold cross-validation.
 

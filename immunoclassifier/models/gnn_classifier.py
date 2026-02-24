@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 ImmunoClassifier v0.1.0
 
@@ -11,14 +10,13 @@ License: MIT License - See LICENSE
 """
 
 import logging
-import pickle
 from pathlib import Path
-from typing import Dict, Any, Optional, List
+from typing import Any
 
-import numpy as np
 import anndata as ad
-from sklearn.preprocessing import LabelEncoder
+import numpy as np
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
 
 from immunoclassifier.models.base import BaseClassifier
 
@@ -41,7 +39,6 @@ class CellGraphGNN:
         n_layers: int = 3,
         dropout: float = 0.3,
     ):
-        import torch
         import torch.nn as nn
         import torch.nn.functional as F
         from torch_geometric.nn import GATv2Conv
@@ -86,7 +83,7 @@ class CellGraphGNN:
                 self.dropout = dropout
 
             def forward(self, x, edge_index):
-                for i, (conv, norm) in enumerate(zip(self.convs[:-1], self.norms)):
+                for _i, (conv, norm) in enumerate(zip(self.convs[:-1], self.norms, strict=False)):
                     x = conv(x, edge_index)
                     x = norm(x)
                     x = F.elu(x)
@@ -172,8 +169,8 @@ class GNNClassifier(BaseClassifier):
         or builds one from PCA coordinates.
         """
         import torch
-        from torch_geometric.data import Data
         from scipy.sparse import csr_matrix
+        from torch_geometric.data import Data
 
         # Node features
         if self.use_pca and "X_pca" in adata.obsm:
@@ -210,7 +207,7 @@ class GNNClassifier(BaseClassifier):
         label_key: str = "cell_type",
         val_fraction: float = 0.1,
         **kwargs,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """Train GNN classifier on cell-cell graph."""
         import torch
         import torch.nn.functional as F

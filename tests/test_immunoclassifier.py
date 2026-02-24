@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 ImmunoClassifier v0.1.0
 
@@ -13,12 +12,11 @@ License: MIT License - See LICENSE
 import os
 import tempfile
 
-import pytest
+import anndata as ad
 import numpy as np
 import pandas as pd
-import anndata as ad
+import pytest
 from scipy.sparse import csr_matrix
-
 
 # ── Fixtures ─────────────────────────────────────────────────────────
 
@@ -75,7 +73,7 @@ class TestPackageMetadata:
         assert __version__ == "0.1.0"
 
     def test_top_level_imports(self):
-        from immunoclassifier import data, models, evaluation
+        from immunoclassifier import data, evaluation, models
         assert data is not None
         assert models is not None
         assert evaluation is not None
@@ -395,6 +393,7 @@ class TestCLI:
 
     def test_main_help(self):
         from click.testing import CliRunner
+
         from immunoclassifier.cli import main
 
         runner = CliRunner()
@@ -404,6 +403,7 @@ class TestCLI:
 
     def test_version_flag(self):
         from click.testing import CliRunner
+
         from immunoclassifier.cli import main
 
         runner = CliRunner()
@@ -413,6 +413,7 @@ class TestCLI:
 
     def test_download_unknown_dataset(self):
         from click.testing import CliRunner
+
         from immunoclassifier.cli import main
 
         runner = CliRunner()

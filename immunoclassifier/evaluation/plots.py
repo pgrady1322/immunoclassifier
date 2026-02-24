@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 ImmunoClassifier v0.1.0
 
@@ -11,11 +10,10 @@ License: MIT License - See LICENSE
 """
 
 import logging
-from typing import Optional, List, Dict
 
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.metrics import confusion_matrix
 
@@ -25,12 +23,12 @@ logger = logging.getLogger(__name__)
 def plot_confusion_matrix(
     y_true: np.ndarray,
     y_pred: np.ndarray,
-    labels: Optional[List[str]] = None,
+    labels: list[str] | None = None,
     normalize: bool = True,
     figsize: tuple = (12, 10),
     cmap: str = "Blues",
     title: str = "Immune Cell Type Classification",
-    save_path: Optional[str] = None,
+    save_path: str | None = None,
 ) -> plt.Figure:
     """
     Plot a confusion matrix for immune cell type classification.
@@ -97,9 +95,9 @@ def plot_confusion_matrix(
 def plot_umap_predictions(
     adata,
     pred_key: str = "predicted_cell_type",
-    true_key: Optional[str] = "cell_type",
+    true_key: str | None = "cell_type",
     figsize: tuple = (16, 6),
-    save_path: Optional[str] = None,
+    save_path: str | None = None,
 ) -> plt.Figure:
     """
     Plot UMAP colored by predicted vs true cell types.
@@ -144,10 +142,10 @@ def plot_umap_predictions(
 
 
 def plot_benchmark_comparison(
-    results: Dict[str, Dict[str, float]],
-    metrics: List[str] = None,
+    results: dict[str, dict[str, float]],
+    metrics: list[str] = None,
     figsize: tuple = (10, 6),
-    save_path: Optional[str] = None,
+    save_path: str | None = None,
 ) -> plt.Figure:
     """
     Plot benchmark comparison across methods.
