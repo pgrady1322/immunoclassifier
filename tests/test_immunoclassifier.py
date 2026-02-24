@@ -80,7 +80,18 @@ class TestPackageMetadata:
 
     def test_model_registry_keys(self):
         from immunoclassifier.training.trainer import MODEL_REGISTRY
-        assert set(MODEL_REGISTRY.keys()) == {"logistic", "xgboost", "scvi", "gnn"}
+
+        # logistic and xgboost are always available
+        assert "logistic" in MODEL_REGISTRY
+        assert "xgboost" in MODEL_REGISTRY
+        # scvi and gnn are optional (require torch)
+        try:
+            import torch  # noqa: F401
+
+            assert "scvi" in MODEL_REGISTRY
+            assert "gnn" in MODEL_REGISTRY
+        except ImportError:
+            pass
 
 
 # ── Logistic Classifier ─────────────────────────────────────────────

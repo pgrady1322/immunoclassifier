@@ -28,13 +28,15 @@ from immunoclassifier.models import (
 
 logger = logging.getLogger(__name__)
 
-# Model registry
-MODEL_REGISTRY = {
+# Build registry from available models (torch-dependent models may be None)
+MODEL_REGISTRY: dict[str, type] = {
     "logistic": LogisticClassifier,
     "xgboost": XGBoostClassifier,
-    "scvi": ScVIClassifier,
-    "gnn": GNNClassifier,
 }
+if ScVIClassifier is not None:
+    MODEL_REGISTRY["scvi"] = ScVIClassifier
+if GNNClassifier is not None:
+    MODEL_REGISTRY["gnn"] = GNNClassifier
 
 
 class Trainer:
