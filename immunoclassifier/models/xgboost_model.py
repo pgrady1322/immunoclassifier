@@ -1,9 +1,13 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-XGBoost classifier for immune cell types.
+ImmunoClassifier v0.1.0
 
-Gradient-boosted trees on marker gene expression features.
-Strong performance on tabular biological data with built-in
-feature importance for biological interpretability.
+XGBoost classifier with class weighting and feature importance.
+
+Author: Patrick Grady
+Anthropic Claude Opus 4.6 used for code formatting and cleanup assistance.
+License: MIT License - See LICENSE
 """
 
 import logging
@@ -256,3 +260,6 @@ class XGBoostClassifier(BaseClassifier):
         self.feature_names = meta["feature_names"]
         self.is_trained = True
         logger.info(f"Loaded XGBoost classifier from {path}")
+
+# ImmunoClassifier v0.1.0
+# Any usage is subject to this software's license.

@@ -1,7 +1,15 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-ImmunoClassifier — ML-powered immune cell type classification from scRNA-seq data.
+ImmunoClassifier v0.1.0
+
+Package installation and dependency configuration.
+
+Author: Patrick Grady
+Anthropic Claude Opus 4.6 used for code formatting and cleanup assistance.
+License: MIT License - See LICENSE
 """
+
 from setuptools import setup, find_packages
 
 with open("README.md", "r", encoding="utf-8") as f:
@@ -58,3 +66,6 @@ setup(
         "Programming Language :: Python :: 3.12",
     ],
 )
+
+# ImmunoClassifier v0.1.0
+# Any usage is subject to this software's license.

@@ -1,8 +1,13 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-Preprocessing pipeline for immune cell classification.
+ImmunoClassifier v0.1.0
 
-Standardized QC, normalization, and feature selection
-optimized for immune cell type classification tasks.
+scRNA-seq preprocessing pipeline (QC, normalization, HVG selection).
+
+Author: Patrick Grady
+Anthropic Claude Opus 4.6 used for code formatting and cleanup assistance.
+License: MIT License - See LICENSE
 """
 
 import logging
@@ -193,3 +198,6 @@ def select_hvgs(
     adata = adata[:, adata.var["highly_variable"]].copy()
 
     return adata
+
+# ImmunoClassifier v0.1.0
+# Any usage is subject to this software's license.

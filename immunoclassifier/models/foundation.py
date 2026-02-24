@@ -1,12 +1,13 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-Foundation model embeddings + classifier for immune cell types.
+ImmunoClassifier v0.1.0
 
-Uses pre-trained single-cell foundation models (scGPT, Geneformer)
-to generate cell embeddings, then trains a lightweight classifier
-on top. This approach leverages representations learned from
-millions of cells across diverse tissues.
+Foundation model classifier stub (scGPT/Geneformer).
 
-Note: Foundation model weights must be downloaded separately.
+Author: Patrick Grady
+Anthropic Claude Opus 4.6 used for code formatting and cleanup assistance.
+License: MIT License - See LICENSE
 """
 
 import logging
@@ -73,3 +74,6 @@ class FoundationModelClassifier(BaseClassifier):
 
     def load(self, path):
         raise NotImplementedError()
+
+# ImmunoClassifier v0.1.0
+# Any usage is subject to this software's license.

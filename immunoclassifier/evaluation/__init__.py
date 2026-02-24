@@ -1,4 +1,14 @@
-"""Evaluation metrics and visualization for immune cell classification."""
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+ImmunoClassifier v0.1.0
+
+Evaluation subpackage — metrics and plotting.
+
+Author: Patrick Grady
+Anthropic Claude Opus 4.6 used for code formatting and cleanup assistance.
+License: MIT License - See LICENSE
+"""
 
 from immunoclassifier.evaluation.metrics import (
     evaluate_predictions,
@@ -19,3 +29,6 @@ __all__ = [
     "plot_umap_predictions",
     "plot_benchmark_comparison",
 ]
+
+# ImmunoClassifier v0.1.0
+# Any usage is subject to this software's license.

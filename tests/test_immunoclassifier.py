@@ -1,5 +1,13 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-Tests for ImmunoClassifier.
+ImmunoClassifier v0.1.0
+
+Unit tests for model and evaluation modules.
+
+Author: Patrick Grady
+Anthropic Claude Opus 4.6 used for code formatting and cleanup assistance.
+License: MIT License - See LICENSE
 """
 
 import pytest
@@ -125,3 +133,6 @@ class TestPreprocessing:
 
         adata = normalize(mock_adata, copy=True)
         assert adata.raw is not None
+
+# ImmunoClassifier v0.1.0
+# Any usage is subject to this software's license.

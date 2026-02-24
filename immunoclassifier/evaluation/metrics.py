@@ -1,8 +1,13 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-Evaluation metrics for immune cell classification.
+ImmunoClassifier v0.1.0
 
-Provides per-class metrics, rare cell type analysis,
-and cross-dataset generalization assessment.
+Classification metrics, per-class analysis, and rare cell evaluation.
+
+Author: Patrick Grady
+Anthropic Claude Opus 4.6 used for code formatting and cleanup assistance.
+License: MIT License - See LICENSE
 """
 
 import logging
@@ -181,3 +186,6 @@ def rare_cell_analysis(
     )
 
     return results
+
+# ImmunoClassifier v0.1.0
+# Any usage is subject to this software's license.

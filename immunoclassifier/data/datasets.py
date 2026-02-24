@@ -1,8 +1,13 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-Dataset loaders for immune cell classification.
+ImmunoClassifier v0.1.0
 
-Provides standardized access to public single-cell immune datasets
-with consistent cell type annotations.
+Dataset loaders for PBMC 10k, Tabula Sapiens, and Hao CITE-seq.
+
+Author: Patrick Grady
+Anthropic Claude Opus 4.6 used for code formatting and cleanup assistance.
+License: MIT License - See LICENSE
 """
 
 import os
@@ -269,3 +274,6 @@ def load_hao_cite_seq(
     raise FileNotFoundError(
         f"Hao CITE-seq data not found at {filepath}. See instructions above for manual download."
     )
+
+# ImmunoClassifier v0.1.0
+# Any usage is subject to this software's license.

@@ -1,8 +1,13 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-Abstract base class for all immune cell classifiers.
+ImmunoClassifier v0.1.0
 
-Defines the interface that all model implementations must follow,
-ensuring consistent training, prediction, evaluation, and serialization.
+Abstract base classifier defining the train/predict/save/load interface.
+
+Author: Patrick Grady
+Anthropic Claude Opus 4.6 used for code formatting and cleanup assistance.
+License: MIT License - See LICENSE
 """
 
 import logging
@@ -112,3 +117,6 @@ class BaseClassifier(ABC):
         status = "trained" if self.is_trained else "untrained"
         n_classes = len(self.classes_) if self.classes_ is not None else 0
         return f"{self.__class__.__name__}(name='{self.name}', status={status}, n_classes={n_classes})"
+
+# ImmunoClassifier v0.1.0
+# Any usage is subject to this software's license.

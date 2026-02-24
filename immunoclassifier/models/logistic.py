@@ -1,9 +1,13 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-Logistic Regression baseline classifier for immune cell types.
+ImmunoClassifier v0.1.0
 
-Simple but effective baseline using L2-regularized logistic regression
-on highly variable genes. Surprisingly competitive for well-separated
-cell types.
+Logistic Regression baseline classifier.
+
+Author: Patrick Grady
+Anthropic Claude Opus 4.6 used for code formatting and cleanup assistance.
+License: MIT License - See LICENSE
 """
 
 import logging
@@ -144,3 +148,6 @@ class LogisticClassifier(BaseClassifier):
         self.classes_ = data["classes_"]
         self.is_trained = True
         logger.info(f"Loaded logistic classifier from {path}")
+
+# ImmunoClassifier v0.1.0
+# Any usage is subject to this software's license.

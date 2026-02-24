@@ -1,5 +1,13 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-ImmunoClassifier CLI — command-line interface for training and prediction.
+ImmunoClassifier v0.1.0
+
+Click CLI — download, train, predict, and benchmark commands.
+
+Author: Patrick Grady
+Anthropic Claude Opus 4.6 used for code formatting and cleanup assistance.
+License: MIT License - See LICENSE
 """
 
 import logging
@@ -98,3 +106,6 @@ def benchmark(config, output):
 
 if __name__ == "__main__":
     main()
+
+# ImmunoClassifier v0.1.0
+# Any usage is subject to this software's license.

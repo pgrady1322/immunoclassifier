@@ -1,8 +1,13 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-Visualization functions for immune cell classification evaluation.
+ImmunoClassifier v0.1.0
 
-Publication-quality plots for confusion matrices, UMAP overlays,
-and benchmark comparisons.
+Visualization — confusion matrices, UMAP predictions, benchmark charts.
+
+Author: Patrick Grady
+Anthropic Claude Opus 4.6 used for code formatting and cleanup assistance.
+License: MIT License - See LICENSE
 """
 
 import logging
@@ -192,3 +197,6 @@ def plot_benchmark_comparison(
         logger.info(f"Saved benchmark plot to {save_path}")
 
     return fig
+
+# ImmunoClassifier v0.1.0
+# Any usage is subject to this software's license.

@@ -1,8 +1,13 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-Unified training and benchmarking orchestrator.
+ImmunoClassifier v0.1.0
 
-Handles training multiple models, cross-validation,
-and cross-dataset evaluation from a single configuration.
+Model training, benchmarking, and cross-validation.
+
+Author: Patrick Grady
+Anthropic Claude Opus 4.6 used for code formatting and cleanup assistance.
+License: MIT License - See LICENSE
 """
 
 import logging
@@ -227,3 +232,6 @@ class Trainer:
         )
 
         return aggregate
+
+# ImmunoClassifier v0.1.0
+# Any usage is subject to this software's license.

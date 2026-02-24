@@ -1,14 +1,13 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-Graph Neural Network classifier for immune cell types.
+ImmunoClassifier v0.1.0
 
-Constructs a cell-cell KNN similarity graph from expression data
-and uses GATv2Conv (Graph Attention Network v2) for semi-supervised
-node classification. This approach captures cell neighborhood context
-that per-cell classifiers miss.
+Graph Neural Network classifier using GATv2Conv on cell KNN graphs.
 
-Architecture inspired by the PathGNN module from StrandWeaver,
-adapted from assembly graph edge classification to cell graph
-node classification.
+Author: Patrick Grady
+Anthropic Claude Opus 4.6 used for code formatting and cleanup assistance.
+License: MIT License - See LICENSE
 """
 
 import logging
@@ -370,3 +369,6 @@ class GNNClassifier(BaseClassifier):
 
         logger.info(f"Loaded GNN classifier metadata from {path}")
         logger.warning("GNN model requires rebuild with correct input dimensions. Use train() or provide n_features.")
+
+# ImmunoClassifier v0.1.0
+# Any usage is subject to this software's license.

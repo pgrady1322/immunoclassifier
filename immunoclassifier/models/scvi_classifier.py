@@ -1,14 +1,13 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-scVI latent space + neural classifier for immune cell types.
+ImmunoClassifier v0.1.0
 
-Uses scVI (Lopez et al. 2018) to learn a low-dimensional latent
-representation of gene expression, then trains a multi-layer
-perceptron classifier on the latent space coordinates.
+scVI latent space classifier with MLP cell-type head.
 
-This approach benefits from:
-- scVI's probabilistic modeling of count data
-- Batch effect removal in the latent space
-- Compact representation for efficient classification
+Author: Patrick Grady
+Anthropic Claude Opus 4.6 used for code formatting and cleanup assistance.
+License: MIT License - See LICENSE
 """
 
 import logging
@@ -314,3 +313,6 @@ class ScVIClassifier(BaseClassifier):
         self.classifier.load_state_dict(checkpoint["classifier_state"])
         self.is_trained = True
         logger.info(f"Loaded scVI classifier from {path}")
+
+# ImmunoClassifier v0.1.0
+# Any usage is subject to this software's license.
