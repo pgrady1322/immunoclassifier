@@ -11,8 +11,9 @@ License: MIT License - See LICENSE
 """
 
 from immunoclassifier.training.trainer import Trainer
+from immunoclassifier.training.hyperopt import run_hyperopt, train_with_best_params
 
-__all__ = ["Trainer"]
+__all__ = ["Trainer", "run_hyperopt", "train_with_best_params"]
 
 # ImmunoClassifier v0.1.0
 # Any usage is subject to this software's license.
