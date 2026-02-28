@@ -1,5 +1,9 @@
 # ImmunoClassifier
 
+[![CI](https://github.com/pgrady1322/immunoclassifier/actions/workflows/ci.yml/badge.svg)](https://github.com/pgrady1322/immunoclassifier/actions/workflows/ci.yml)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
 **ML-powered immune cell type classification from single-cell RNA-seq data.**
 
 ImmunoClassifier benchmarks multiple machine learning approaches for fine-grained immune cell subtype identification, from classical ML baselines to deep learning and graph neural networks.
