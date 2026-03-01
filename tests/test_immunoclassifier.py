@@ -540,6 +540,79 @@ class TestFoundationModel:
         assert model_gf.embedding_dim == 256
 
 
+# ── Trainer ──────────────────────────────────────────────────────────
+
+
+class TestTrainer:
+    """Test the Trainer orchestrator."""
+
+    def test_train_model_logistic(self, mock_adata):
+        from immunoclassifier.training.trainer import Trainer
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            trainer = Trainer(output_dir=tmpdir, label_key="cell_type")
+            model, metrics = trainer.train_model("logistic", mock_adata, model_kwargs={"C": 1.0})
+            assert model.is_trained
+            assert "train_accuracy" in metrics
+            assert "training_time_seconds" in metrics
+
+    def test_train_model_xgboost(self, mock_adata):
+        from immunoclassifier.training.trainer import Trainer
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            trainer = Trainer(output_dir=tmpdir, label_key="cell_type")
+            model, metrics = trainer.train_model(
+                "xgboost", mock_adata, model_kwargs={"n_estimators": 10, "max_depth": 3}
+            )
+            assert model.is_trained
+            assert "training_time_seconds" in metrics
+
+    def test_train_model_unknown_raises(self, mock_adata):
+        from immunoclassifier.training.trainer import Trainer
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            trainer = Trainer(output_dir=tmpdir)
+            with pytest.raises(ValueError, match="Unknown model"):
+                trainer.train_model("nonexistent_model", mock_adata)
+
+    def test_benchmark_logistic_only(self, mock_adata):
+        from immunoclassifier.training.trainer import Trainer
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            trainer = Trainer(output_dir=tmpdir, label_key="cell_type")
+            results = trainer.benchmark(mock_adata, models=["logistic"])
+            assert "logistic" in results
+            assert "training_metrics" in results["logistic"]
+
+    def test_benchmark_with_test_set(self, mock_adata):
+        from immunoclassifier.training.trainer import Trainer
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            trainer = Trainer(output_dir=tmpdir, label_key="cell_type")
+            results = trainer.benchmark(
+                mock_adata,
+                adata_test=mock_adata,
+                models=["logistic"],
+            )
+            assert "logistic" in results
+            assert "accuracy" in results["logistic"]
+            assert "rare_cell_analysis" in results["logistic"]
+
+    def test_cross_validate(self, mock_adata):
+        from immunoclassifier.training.trainer import Trainer
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            trainer = Trainer(output_dir=tmpdir, label_key="cell_type")
+            cv_results = trainer.cross_validate(
+                "logistic", mock_adata, n_folds=3, model_kwargs={"C": 1.0}
+            )
+            assert "mean_accuracy" in cv_results
+            assert "std_accuracy" in cv_results
+            assert "mean_macro_f1" in cv_results
+            assert cv_results["n_folds"] == 3
+            assert len(cv_results["per_fold"]) == 3
+
+
 # ── Base Classifier Interface ────────────────────────────────────────
 
 

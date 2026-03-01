@@ -41,3 +41,8 @@ Thumbs.db
 
 # Results
 results/
+
+# Coverage
+.coverage
+coverage.xml
+htmlcov/
