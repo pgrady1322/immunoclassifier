@@ -1,0 +1,82 @@
+# ═══════════════════════════════════════════════════════════════════════
+# ImmunoClassifier — Benchmark Configuration
+# ═══════════════════════════════════════════════════════════════════════
+#
+# This config drives the full benchmark: data loading, preprocessing,
+# model training, and evaluation.
+#
+# Usage:
+#   immunoclassifier benchmark --config configs/benchmark.yaml --output results/
+
+# Data configuration
+data:
+  train_dataset: "pbmc_10k"           # Dataset for training
+  test_dataset: null                   # Separate test dataset (null = use val split)
+  label_key: "cell_type"
+  cache_dir: "~/.cache/immunoclassifier/data"
+
+# Preprocessing
+preprocessing:
+  min_genes: 200
+  min_cells: 3
+  max_pct_mito: 20.0
+  n_top_genes: 3000
+  target_sum: 10000
+  n_pcs: 50
+  n_neighbors: 15
+  batch_key: null                      # Batch correction column (if applicable)
+
+# Models to benchmark
+models:
+  logistic:
+    enabled: true
+    params:
+      C: 1.0
+      max_iter: 1000
+
+  xgboost:
+    enabled: true
+    params:
+      n_estimators: 500
+      max_depth: 8
+      learning_rate: 0.1
+      subsample: 0.8
+      colsample_bytree: 0.8
+      use_gpu: false
+
+  scvi:
+    enabled: true
+    params:
+      n_latent: 30
+      n_layers: 2
+      n_hidden: 128
+      scvi_epochs: 100
+      classifier_epochs: 50
+      batch_size: 256
+
+  gnn:
+    enabled: true
+    params:
+      hidden_channels: 64
+      n_heads: 4
+      n_layers: 3
+      dropout: 0.3
+      n_neighbors: 15
+      epochs: 200
+      use_pca: true
+
+# Evaluation
+evaluation:
+  val_fraction: 0.1
+  cross_validation:
+    enabled: false
+    n_folds: 5
+  rare_cell_threshold: 100            # Cells below this count = "rare"
+
+# Output
+output:
+  dir: "results"
+  save_models: true
+  save_predictions: true
+  save_plots: true
+  plot_format: "png"                   # png, pdf, svg

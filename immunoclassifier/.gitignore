@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+
+# Environments
+.venv/
+env/
+venv/
+
+# Data files (large)
+data/raw/
+data/processed/
+*.h5ad
+*.h5
+*.loom
+
+# Trained models (large)
+trained_models/*.pt
+trained_models/*.pkl
+trained_models/*.json
+!trained_models/.gitkeep
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_metadata
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Results
+results/
