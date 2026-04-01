@@ -14,6 +14,10 @@ ImmunoClassifier benchmarks multiple machine learning approaches for fine-graine
 > Synthetic PBMC data → preprocessing → Logistic & XGBoost training → evaluation → visualizations.  
 > No data downloads, no GPU — runs in ~30 seconds.
 
+> **[Seurat v5 scRNA-seq Workflow Notebook](examples/seurat_scrnaseq_workflow.ipynb)**  
+> R/Seurat v5 workflow alongside the equivalent Python/scanpy pipeline.  
+> **Note:** Use `library(Seurat)` with a capital **S** — R package names are case-sensitive.
+
 ## Overview
 
 Accurate immune cell type annotation is critical for interpreting scRNA-seq experiments in immunology, immuno-oncology, and infectious disease research. ImmunoClassifier provides:
